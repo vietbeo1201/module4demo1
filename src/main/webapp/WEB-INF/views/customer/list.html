@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table id="customers">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>View</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="row,rowStat : ${customers}">
+    <td th:text="${row.getCusName()}"></td>
+    <td th:text="${row.getCusEmail()}"></td>
+    <td th:text="${row.getCusAddress()}"></td>
+    <td><a th:href="@{/customer/{id}/edit(id=${row.getCusID()})}">Edit</a></td>
+    <td><a th:href="@{/customer/{id}/delete(id=${row.getCusID()})}">Delete</a></td>
+    <td><a th:href="@{/customer/{id}/view(id=${row.getCusID()})}">View</a></td>
+  </tr>
+  </tbody>
+
+</table>
+</body>
+</html>
