@@ -15,6 +15,8 @@ public class Customer {
         this.cusEmail = cusEmail;
     }
 
+    public Customer() {}
+
     public int getCusID() {
         return cusID;
     }

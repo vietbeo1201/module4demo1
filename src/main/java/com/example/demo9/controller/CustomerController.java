@@ -15,12 +15,27 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("")
+    @GetMapping("/management")
     public String findAll(Model model) {        // after handle customers it will send data into url: WEB-INF/views/customer/list.html
         List<Customer> customerList =  customerService.findAll();
         model.addAttribute("customers", customerList);
+        model.addAttribute("message", "welcome to management page");
         return "/customer/list";
     }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("customer", new Customer());
+        return "/customer/create";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute("customer") Customer customer, Model model){
+        customerService.save(customer);
+        model.addAttribute("customer", new Customer());
+        return "/customer/create";
+    }
+
 
 
 //    @GetMapping("/list/{name}/{age}/{email}")   // /customer/list/viet/24/viet@gmail.com
