@@ -53,7 +53,7 @@ public class CustomerController {
                                         customerForm.getCusPhone(), customerForm.getCusEmail(), fileName);
 
         customerService.save(customer);
-        model.addAttribute("customer", customer);
+        model.addAttribute("customer", customerForm);
         return "/customer/create";
 
     }
