@@ -1,12 +1,18 @@
 package com.example.demo9.controller;
 
 import com.example.demo9.customer.Customer;
+import com.example.demo9.customer.CustomerForm;
 import com.example.demo9.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -14,6 +20,8 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+
+    @Value("${file-upload}") private String fileUpload;
 
     @GetMapping("/management")
     public String findAll(Model model) {        // after handle customers it will send data into url: WEB-INF/views/customer/list.html
@@ -30,10 +38,24 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("customer") Customer customer, Model model){
+    public String save(@ModelAttribute("customer") CustomerForm customerForm, Model model){
+        MultipartFile multipartFile = customerForm.getCusImage();
+        String fileName = multipartFile.getOriginalFilename();
+        try{
+            FileCopyUtils.copy(customerForm.getCusImage().getBytes(),new File(fileUpload + fileName));
+            // change image into byte create new File with absolute path + file name(example: viet.img)
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // prepare data to right data type for input into database
+        Customer customer = new Customer(customerForm.getCusID(), customerForm.getCusName(), customerForm.getCusAddress(),
+                                        customerForm.getCusPhone(), customerForm.getCusEmail(), fileName);
+
         customerService.save(customer);
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("customer", customer);
         return "/customer/create";
+
     }
 
 

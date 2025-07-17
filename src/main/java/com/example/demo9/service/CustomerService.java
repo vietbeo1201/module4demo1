@@ -12,11 +12,11 @@ public class CustomerService implements iGeneralService<Customer> {
 
     static {
         customers = new HashMap<>();
-        customers.put(1, new Customer(1, "John Doe", "123 Elm Street", "555-1234", "john@example.com"));
-        customers.put(2, new Customer(2, "Jane Smith", "456 Oak Avenue", "555-5678", "jane.smith@example.com"));
-        customers.put(3, new Customer(3, "David Nguyen", "789 Pine Road", "0909-888-777", "davidn@vnmail.vn"));
-        customers.put(4, new Customer(4, "Maria Garcia", "12 Maple Lane", "555-1010", "maria.garcia@example.com"));
-        customers.put(5, new Customer(5, "Lê Văn A", "10 Lý Thường Kiệt, Hà Nội", "0912-345-678", "leva@example.vn"));
+        customers.put(1, new Customer(1, "John Doe", "123 Elm Street", "555-1234", "john@example.com","123"));
+        customers.put(2, new Customer(2, "Jane Smith", "456 Oak Avenue", "555-5678", "jane.smith@example.com","123"));
+        customers.put(3, new Customer(3, "David Nguyen", "789 Pine Road", "0909-888-777", "davidn@vnmail.vn","123"));
+        customers.put(4, new Customer(4, "Maria Garcia", "12 Maple Lane", "555-1010", "maria.garcia@example.com","123"));
+        customers.put(5, new Customer(5, "Lê Văn A", "10 Lý Thường Kiệt, Hà Nội", "0912-345-678", "leva@example.vn","123"));
     }
 
     @Override

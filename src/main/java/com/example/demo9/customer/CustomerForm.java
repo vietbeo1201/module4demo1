@@ -1,14 +1,16 @@
 package com.example.demo9.customer;
 
-public class Customer {
+import org.springframework.web.multipart.MultipartFile;
+
+public class CustomerForm {
     private int  cusID;
     private String  cusName;
     private String  cusAddress;
     private String  cusPhone;
     private String  cusEmail;
-    private String cusImage;
+    private MultipartFile cusImage;
 
-    public Customer(int cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, String cusImage) {
+    public CustomerForm(int cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, MultipartFile cusImage) {
         this.cusID = cusID;
         this.cusName = cusName;
         this.cusAddress = cusAddress;
@@ -17,13 +19,13 @@ public class Customer {
         this.cusImage = cusImage;
     }
 
-    public Customer() {}
+    public CustomerForm() {}
 
-    public String getCusImage() {
+    public MultipartFile getCusImage() {
         return cusImage;
     }
 
-    public void setCusImage(String cusImage) {
+    public void setCusImage(MultipartFile cusImage) {
         this.cusImage = cusImage;
     }
 
