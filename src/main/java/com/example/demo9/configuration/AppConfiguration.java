@@ -58,10 +58,10 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
         return viewResolver;
     }
 
-    @Bean
-    public CustomerService customerService(){
-        return new CustomerService();
-    }
+//    @Bean
+//    public CustomerService customerService(){
+//        return new CustomerService();
+//    }
 
     // upload file
     @Value("${file-upload") private String fileUpload;

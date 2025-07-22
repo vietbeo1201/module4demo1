@@ -1,6 +1,12 @@
-package com.example.demo9.customer;
+package com.example.demo9.model;
 
+import javax.persistence.*;
+
+    @Entity                                                 // mark this is an entity
+    @Table(name = "customer")                               // collate into database
 public class Customer {
+    @Id                                                     // PK
+    @GeneratedValue(strategy = GenerationType.AUTO)         // auto increment
     private int  cusID;
     private String  cusName;
     private String  cusAddress;

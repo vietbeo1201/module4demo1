@@ -1,4 +1,4 @@
-package com.example.demo9.customer;
+package com.example.demo9.model;
 
 import org.springframework.web.multipart.MultipartFile;
 

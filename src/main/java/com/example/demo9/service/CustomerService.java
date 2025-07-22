@@ -1,46 +1,55 @@
 package com.example.demo9.service;
 
-import com.example.demo9.customer.Customer;
+import com.example.demo9.model.Customer;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.*;
 
-@Service
+@Service                                                                        // auto create bean
 public class CustomerService implements iGeneralService<Customer> {
-
-    private static final Map<Integer, Customer> customers;
+    // reading file hibernate.config.xml
+    private static SessionFactory sessionFactory;
+    private static EntityManager entityManager;
 
     static {
-        customers = new HashMap<>();
-        customers.put(1, new Customer(1, "John Doe", "123 Elm Street", "555-1234", "john@example.com","123"));
-        customers.put(2, new Customer(2, "Jane Smith", "456 Oak Avenue", "555-5678", "jane.smith@example.com","123"));
-        customers.put(3, new Customer(3, "David Nguyen", "789 Pine Road", "0909-888-777", "davidn@vnmail.vn","123"));
-        customers.put(4, new Customer(4, "Maria Garcia", "12 Maple Lane", "555-1010", "maria.garcia@example.com","123"));
-        customers.put(5, new Customer(5, "Lê Văn A", "10 Lý Thường Kiệt, Hà Nội", "0912-345-678", "leva@example.vn","123"));
+        try {
+            sessionFactory = new Configuration()
+                    .configure("hibernate.conf.xml")
+                    .buildSessionFactory();
+            sessionFactory.close();
+            entityManager = sessionFactory.createEntityManager();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public List<Customer> findAll() {
-        return new ArrayList<>(customers.values());
+        return Collections.emptyList();
     }
 
     @Override
     public void save(Customer customer) {
-        customers.put(customer.getCusID(), customer);
+
     }
 
     @Override
     public Customer findById(int id) {
-        return customers.get(id);
+        return null;
     }
 
     @Override
     public void update(int id, Customer customer) {
-        customers.put(id, customer);
+
     }
 
     @Override
     public void remove(int id) {
-        customers.remove(id);
+
     }
 }

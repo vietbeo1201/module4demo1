@@ -1,6 +1,6 @@
 package com.example.demo9.controller;
 
-import com.example.demo9.customer.Customer;
+import com.example.demo9.model.Customer;
 import com.example.demo9.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
