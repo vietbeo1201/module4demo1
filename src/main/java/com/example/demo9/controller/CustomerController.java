@@ -31,6 +31,13 @@ public class CustomerController {
         return "/customer/list";
     }
 
+    @GetMapping("/1")
+    public  String firstCustomer(Model model) {
+        Customer customer = customerService.findById(1);
+        model.addAttribute("customer", customer);
+        return "/customer/list";
+    }
+
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("customer", new Customer());

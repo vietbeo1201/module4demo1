@@ -34,7 +34,12 @@ dependencies {
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
     // upload file
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
-
+    // hibernate-core
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.10.Final'
+    // mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.30'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    runtimeOnly 'org.slf4j:slf4j-simple:2.0.9'
 }
 
 test {
