@@ -1,11 +1,13 @@
 package com.example.demo9.service;
 
+import com.example.demo9.Repository.ICustomerRepository;
 import com.example.demo9.model.Customer;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -13,15 +15,39 @@ import javax.persistence.TypedQuery;
 import java.util.*;
 
 @Service                                                                        // auto create bean
-public class CustomerService implements iGeneralService<Customer> {
-    // reading file hibernate.config.xml
-    private static SessionFactory sessionFactory;
+public class CustomerService implements ICustomerService {
+
+    @Autowired
+    private ICustomerRepository iCustomerRepository;
+
+    @Override
+    public List<Customer> findAll() {
+        return iCustomerRepository.findAll();
+    }
+
+    @Override
+    public void save(Customer customer) {
+        iCustomerRepository.save(customer);
+    }
+
+    @Override
+    public Customer findById(Integer id) {
+        return iCustomerRepository.findById(id);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        iCustomerRepository.remove(id);
+    }
+
+    // reading file hibernate.conf.xml
+    /*private static SessionFactory sessionFactory;
     private static EntityManager entityManager;
 
     static {
         try {
             sessionFactory = new Configuration()
-                    .configure("hibernate.config.xml")
+                    .configure("hibernate.conf.xml")
                     .buildSessionFactory();
             entityManager = sessionFactory.createEntityManager();
         } catch (HibernateException e) {
@@ -74,12 +100,7 @@ public class CustomerService implements iGeneralService<Customer> {
 
 
     @Override
-    public void update(int id, Customer customer) {
-
-    }
-
-    @Override
     public void remove(int id) {
 
-    }
+    }*/
 }

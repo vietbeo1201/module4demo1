@@ -2,19 +2,19 @@ package com.example.demo9.model;
 
 import javax.persistence.*;
 
-    @Entity                                                 // mark this is an entity
-    @Table(name = "customer")                               // collate into database
+@Entity                                                 // mark this is an entity
+@Table(name = "customer")                               // collate into database
 public class Customer {
     @Id                                                     // PK
     @GeneratedValue(strategy = GenerationType.AUTO)         // auto increment
-    private int  cusID;
-    private String  cusName;
-    private String  cusAddress;
-    private String  cusPhone;
-    private String  cusEmail;
+    private Integer cusID;
+    private String cusName;
+    private String cusAddress;
+    private String cusPhone;
+    private String cusEmail;
     private String cusImage;
 
-    public Customer(int cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, String cusImage) {
+    public Customer(Integer cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, String cusImage) {
         this.cusID = cusID;
         this.cusName = cusName;
         this.cusAddress = cusAddress;
@@ -23,7 +23,8 @@ public class Customer {
         this.cusImage = cusImage;
     }
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public String getCusImage() {
         return cusImage;
@@ -33,11 +34,11 @@ public class Customer {
         this.cusImage = cusImage;
     }
 
-    public int getCusID() {
+    public Integer getCusID() {
         return cusID;
     }
 
-    public void setCusID(int cusID) {
+    public void setCusID(Integer cusID) {
         this.cusID = cusID;
     }
 
