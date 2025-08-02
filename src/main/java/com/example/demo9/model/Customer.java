@@ -4,18 +4,30 @@ import javax.persistence.*;
 
 @Entity                                                 // mark this is an entity
 @Table(name = "customer")                               // collate into database
+@NamedQuery(
+        name="findAllCustomerWithName",
+        query="SELECT c FROM Customer c WHERE c.cusName LIKE :cusName"
+)
 public class Customer {
     @Id                                                     // PK
-    @GeneratedValue(strategy = GenerationType.AUTO)         // auto increment
-    private Integer cusID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)         // auto increment
+    private Long cusID;
     private String cusName;
     private String cusAddress;
     private String cusPhone;
     private String cusEmail;
     private String cusImage;
 
-    public Customer(Integer cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, String cusImage) {
+    public Customer(Long cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, String cusImage) {
         this.cusID = cusID;
+        this.cusName = cusName;
+        this.cusAddress = cusAddress;
+        this.cusPhone = cusPhone;
+        this.cusEmail = cusEmail;
+        this.cusImage = cusImage;
+    }
+
+    public Customer(String cusName, String cusAddress, String cusPhone, String cusEmail, String cusImage) {
         this.cusName = cusName;
         this.cusAddress = cusAddress;
         this.cusPhone = cusPhone;
@@ -34,11 +46,11 @@ public class Customer {
         this.cusImage = cusImage;
     }
 
-    public Integer getCusID() {
+    public Long getCusID() {
         return cusID;
     }
 
-    public void setCusID(Integer cusID) {
+    public void setCusID(Long cusID) {
         this.cusID = cusID;
     }
 

@@ -9,6 +9,8 @@
     <th>Name</th>
     <th>Email</th>
     <th>Address</th>
+    <th>phone</th>
+    <th>img</th>
     <th>Edit</th>
     <th>Delete</th>
     <th>View</th>
@@ -19,6 +21,8 @@
     <td th:text="${row.getCusName()}"></td>
     <td th:text="${row.getCusEmail()}"></td>
     <td th:text="${row.getCusAddress()}"></td>
+    <td th:text="${row.getCusPhone()}"></td>
+    <td><img width="50" height="50" th:src="@{'/image/' + ${row.cusImage}}" alt="" src=""></td>
     <td><a th:href="@{/customer/{id}/edit(id=${row.getCusID()})}">Edit</a></td>
     <td><a th:href="@{/customer/{id}/delete(id=${row.getCusID()})}">Delete</a></td>
     <td><a th:href="@{/customer/{id}/view(id=${row.getCusID()})}">View</a></td>
@@ -27,6 +31,6 @@
 
 </table>
 <h2 th:text="${message}"></h2>
-<footer th:replace="/customer/layout :: footer"></footer>
+<!--<footer th:replace="/customer/layout :: footer"></footer>-->
 </body>
 </html>

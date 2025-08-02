@@ -80,11 +80,13 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 //    }
 
     // upload file
-    @Value("${file-upload") private String fileUpload;
+    @Value("${file-upload}")
+    private String fileUpload;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**").addResourceLocations("file:" + fileUpload);
+        registry.addResourceHandler("/image/**")
+                .addResourceLocations("file:" + fileUpload);
     }
 
     @Bean(name = "multipartResolver")
@@ -106,7 +108,7 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.example.demo9");      // mapping entity to table
+        em.setPackagesToScan("com.example.demo9.model");      // mapping entity to table
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -118,9 +120,9 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/demo9");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/module4demo1");
         dataSource.setUsername("root");
-        dataSource.setPassword("123456@Abc");
+        dataSource.setPassword("123456");
         return dataSource;
     }
 

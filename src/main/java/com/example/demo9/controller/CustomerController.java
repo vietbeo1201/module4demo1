@@ -1,5 +1,6 @@
 package com.example.demo9.controller;
 
+import com.example.demo9.Repository.CustomerRepository;
 import com.example.demo9.model.Customer;
 import com.example.demo9.model.CustomerForm;
 import com.example.demo9.service.CustomerService;
@@ -20,11 +21,13 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+    private CustomerRepository customerRepository;
 
     @Value("${file-upload}") private String fileUpload;
 
     @GetMapping("/management")
     public String findAll(Model model) {        // after handle customers it will send data into url: WEB-INF/views/customer/list.html
+//        List<Customer> customers = customerService.findAllCustomerWithName("viet");
         List<Customer> customerList =  customerService.findAll();
         model.addAttribute("customers", customerList);
         model.addAttribute("message", "welcome to management page");
@@ -40,7 +43,7 @@ public class CustomerController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("customer", new CustomerForm());
         return "/customer/create";
     }
 
@@ -48,6 +51,7 @@ public class CustomerController {
     public String save(@ModelAttribute("customer") CustomerForm customerForm, Model model){
         MultipartFile multipartFile = customerForm.getCusImage();
         String fileName = multipartFile.getOriginalFilename();
+
         try{
             FileCopyUtils.copy(customerForm.getCusImage().getBytes(),new File(fileUpload + fileName));
             // change image into byte create new File with absolute path + file name(example: viet.img)
@@ -56,12 +60,12 @@ public class CustomerController {
         }
 
         // prepare data to right data type for input into database
-        Customer customer = new Customer(customerForm.getCusID(), customerForm.getCusName(), customerForm.getCusAddress(),
+        Customer customer = new Customer( customerForm.getCusName(), customerForm.getCusAddress(),
                                         customerForm.getCusPhone(), customerForm.getCusEmail(), fileName);
 
         customerService.save(customer);
         model.addAttribute("customer", customerForm);
-        return "/customer/create";
+        return "/customer/list";
 
     }
 

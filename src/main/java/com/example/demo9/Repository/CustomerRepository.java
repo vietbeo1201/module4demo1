@@ -46,4 +46,17 @@ public class CustomerRepository implements ICustomerRepository {
             entityManager.remove(customer);
         }
     }
+
+    @Override
+    public List<Customer> findAllCustomerWithName(String cusName) {
+        List<Customer> customers = entityManager.createNamedQuery("findAllCustomerWithName")
+                .setParameter("cusName", cusName)
+                .getResultList();
+        return customers;
+    }
+
+    public Integer findLastIdFromDatabsae(){ //để khi tạo dữ liệu mới có thể tìm được id tiếp theo để insert vào db
+        TypedQuery<Integer> query = entityManager.createQuery("SELECT MAX(c.cusID) FROM Customer c", Integer.class);
+        return query.getSingleResult();
+    }
 }

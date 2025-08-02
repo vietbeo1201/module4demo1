@@ -40,6 +40,12 @@ public class CustomerService implements ICustomerService {
         iCustomerRepository.remove(id);
     }
 
+    @Override
+    public List<Customer> findAllCustomerWithName(String cusName) {
+
+        return iCustomerRepository.findAllCustomerWithName(cusName);
+    }
+
     // reading file hibernate.conf.xml
     /*private static SessionFactory sessionFactory;
     private static EntityManager entityManager;

@@ -3,7 +3,7 @@ package com.example.demo9.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CustomerForm {
-    private int  cusID;
+    private Integer  cusID;
     private String  cusName;
     private String  cusAddress;
     private String  cusPhone;
@@ -12,6 +12,14 @@ public class CustomerForm {
 
     public CustomerForm(int cusID, String cusName, String cusAddress, String cusPhone, String cusEmail, MultipartFile cusImage) {
         this.cusID = cusID;
+        this.cusName = cusName;
+        this.cusAddress = cusAddress;
+        this.cusPhone = cusPhone;
+        this.cusEmail = cusEmail;
+        this.cusImage = cusImage;
+    }
+
+    public CustomerForm( String cusName, String cusAddress, String cusPhone, String cusEmail, MultipartFile cusImage) {
         this.cusName = cusName;
         this.cusAddress = cusAddress;
         this.cusPhone = cusPhone;
@@ -29,11 +37,11 @@ public class CustomerForm {
         this.cusImage = cusImage;
     }
 
-    public int getCusID() {
+    public Integer getCusID() {
         return cusID;
     }
 
-    public void setCusID(int cusID) {
+    public void setCusID(Integer cusID) {
         this.cusID = cusID;
     }
 
